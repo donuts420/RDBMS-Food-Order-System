@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Food Ordering System - Register</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      // Configure Tailwind to use a nice font and extend colors
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ["Inter", "sans-serif"],
+            },
+            colors: {
+              primary: "#E35F20", // A vibrant food/app color (e.g., a deep orange)
+              secondary: "#1F2937", // Dark gray for text
+              background: "#F9FAFB", // Light background
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      /* Custom styles for better focus and aesthetics */
+      body {
+        background-color: #f9fafb;
+      }
+      .input-field:focus {
+        box-shadow: 0 0 0 3px rgba(227, 95, 32, 0.4); /* Custom focus ring color */
+        border-color: #e35f20;
+      }
+    </style>
+  </head>
+  <body class="font-sans min-h-screen flex items-center justify-center p-4">
+    <!-- Registration Card Container -->
+    <div
+      class="w-full max-w-md bg-white rounded-xl shadow-2xl p-8 sm:p-10 border border-gray-100 transition-all duration-300 hover:shadow-primary/20"
+    >
+      <!-- Title -->
+      <h1 class="text-3xl font-extrabold text-secondary mb-2 text-center">
+        Food Ordering System
+      </h1>
+      <p class="text-center text-gray-500 mb-8">
+        Create your account to start ordering delicious food!
+      </p>
+
+      <!-- Registration Form -->
+      <form id="registrationForm" onsubmit="handleRegistration(event)">
+        <!-- Full Name Field -->
+        <div class="mb-4">
+          <label
+            for="fullName"
+            class="block text-sm font-medium text-gray-700 mb-1"
+            >Full Name</label
+          >
+          <input
+            type="text"
+            id="fullName"
+            name="fullName"
+            placeholder="John Doe"
+            required
+            class="input-field w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm transition-all duration-200"
+          />
+        </div>
+
+        <!-- Email Field -->
+        <div class="mb-4">
+          <label
+            for="email"
+            class="block text-sm font-medium text-gray-700 mb-1"
+            >Email Address</label
+          >
+          <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="you@example.com"
+            required
+            class="input-field w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm transition-all duration-200"
+          />
+        </div>
+
+        <!-- Password Field -->
+        <div class="mb-4">
+          <label
+            for="password"
+            class="block text-sm font-medium text-gray-700 mb-1"
+            >Password</label
+          >
+          <input
+            type="password"
+            id="password"
+            name="password"
+            placeholder="••••••••"
+            required
+            class="input-field w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm transition-all duration-200"
+          />
+        </div>
+
+        <!-- Confirm Password Field -->
+        <div class="mb-6">
+          <label
+            for="confirmPassword"
+            class="block text-sm font-medium text-gray-700 mb-1"
+            >Confirm Password</label
+          >
+          <input
+            type="password"
+            id="confirmPassword"
+            name="confirmPassword"
+            placeholder="••••••••"
+            required
+            class="input-field w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm transition-all duration-200"
+          />
+        </div>
+
+        <!-- Registration Button -->
+        <button
+          type="submit"
+          class="w-full bg-primary text-white py-3 rounded-lg font-semibold text-lg shadow-md hover:bg-primary/90 transition-colors duration-200 focus:outline-none focus:ring-4 focus:ring-primary/50 mb-4"
+        >
+          Register
+        </button>
+      </form>
+
+      <!-- Alternative Action / Message Box -->
+      <div
+        id="messageBox"
+        class="text-center p-3 rounded-lg transition-opacity duration-300 opacity-0 hidden"
+        role="alert"
+      ></div>
+
+      <!-- Log In Link -->
+      <p class="text-center text-sm text-gray-600">
+        Already have an account?
+        <a
+          href="login.html"
+          class="text-primary font-medium hover:text-primary/70 transition-colors duration-200"
+        >
+          Log In
+        </a>
+      </p>
+    </div>
+    <script src="../../backend/script.js"></script>
+  </body>
+</html>

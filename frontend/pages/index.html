@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Food Ordering System</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: { sans: ["Inter", "sans-serif"] },
+            colors: {
+              primary: "#E35F20",
+              secondary: "#1F2937",
+              background: "#F9FAFB",
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      body {
+        background-color: #f9fafb;
+      }
+      .input-field:focus {
+        box-shadow: 0 0 0 3px rgba(227, 95, 32, 0.25);
+        border-color: #e35f20;
+      }
+      .cart-scroll {
+        max-height: 360px;
+        overflow-y: auto;
+      }
+    </style>
+  </head>
+  <body class="font-sans min-h-screen p-6">
+    <header class="max-w-6xl mx-auto flex items-center justify-between mb-6">
+      <div>
+        <h1 class="text-2xl font-extrabold text-secondary">
+          Food Ordering System
+        </h1>
+        <p class="text-sm text-gray-500">
+          Choose from our menu and order in one click.
+        </p>
+      </div>
+      <nav class="space-x-4">
+        <a
+          href="login.html"
+          class="text-sm text-primary font-medium hover:opacity-80"
+          >Log In</a
+        >
+        <a
+          href="registration.html"
+          class="text-sm text-primary font-medium hover:opacity-80"
+          >Register</a
+        >
+      </nav>
+    </header>
+
+    <main class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <section
+        class="lg:col-span-2 bg-white rounded-xl p-6 shadow-sm border border-gray-100"
+      >
+        <div class="flex items-center justify-between mb-4">
+          <h2 class="text-xl font-semibold text-secondary">Menu</h2>
+          <div class="flex items-center gap-2">
+            <label class="text-sm text-gray-600">Search</label>
+            <input
+              id="menuSearch"
+              type="search"
+              placeholder="Search dishes..."
+              class="input-field px-3 py-2 border rounded-lg"
+            />
+          </div>
+        </div>
+
+        <div id="menuGrid" class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <!-- Items injected by cart.js -->
+        </div>
+      </section>
+
+      <aside class="bg-white rounded-xl p-5 shadow-sm border border-gray-100">
+        <h3 class="text-lg font-semibold text-secondary mb-2">Your Cart</h3>
+        <div class="text-sm text-gray-500 mb-4">
+          Items added will appear here. You can edit quantity or remove items.
+        </div>
+
+        <div id="cartItems" class="cart-scroll mb-4 space-y-3">
+          <p id="cartEmpty" class="text-gray-400">Cart is empty.</p>
+        </div>
+
+        <div class="border-t pt-3">
+          <div class="flex justify-between items-center mb-3">
+            <span class="text-sm text-gray-600">Subtotal</span>
+            <span id="cartSubtotal" class="font-semibold text-secondary"
+              >₹0.00</span
+            >
+          </div>
+
+          <button
+            id="placeOrderBtn"
+            class="w-full bg-primary text-white py-2 rounded-lg font-medium mb-2 disabled:opacity-60"
+            disabled
+          >
+            Place Order
+          </button>
+          <button
+            id="clearCartBtn"
+            class="w-full border border-gray-200 py-2 rounded-lg text-sm"
+          >
+            Clear Cart
+          </button>
+        </div>
+      </aside>
+    </main>
+
+    <div
+      id="toast"
+      class="fixed right-6 bottom-6 bg-white border border-gray-200 rounded-lg shadow-lg p-4 hidden"
+    >
+      <div id="toastText" class="text-sm"></div>
+    </div>
+
+    <script src="../../backend/script.js"></script>
+  </body>
+</html>
