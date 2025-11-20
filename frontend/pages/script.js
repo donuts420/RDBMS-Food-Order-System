@@ -35,7 +35,14 @@ if (regForm) {
 }
 
 async function handleRegistration(event) {
-  event.preventDefault(); // Prevents URL change
+  event.preventDefault();
+
+  const submitBtn = regForm.querySelector("button[type='submit']");
+  const originalBtnText = submitBtn.innerText;
+
+  // 1. DISABLE BUTTON to prevent double-clicks
+  submitBtn.disabled = true;
+  submitBtn.innerText = "Registering...";
 
   const fullName = document.getElementById("fullName").value?.trim();
   const email = document.getElementById("email").value?.trim();
@@ -44,10 +51,12 @@ async function handleRegistration(event) {
 
   if (!fullName || !email || !password) {
     showMessage("All fields are required.", "error");
+    resetButton();
     return;
   }
   if (password !== confirmPassword) {
     showMessage("Passwords do not match.", "error");
+    resetButton();
     return;
   }
 
@@ -59,8 +68,10 @@ async function handleRegistration(event) {
     });
 
     const data = await resp.json();
+
     if (!resp.ok) {
       showMessage(data.error || "Registration failed", "error");
+      resetButton(); // Re-enable button on error
       return;
     }
 
@@ -68,9 +79,17 @@ async function handleRegistration(event) {
     setTimeout(() => {
       window.location.href = "login.html";
     }, 1200);
+
+    // Note: We do NOT re-enable the button here because we are redirecting.
   } catch (err) {
     console.error("Registration error:", err);
     showMessage("Server error. Check console.", "error");
+    resetButton();
+  }
+
+  function resetButton() {
+    submitBtn.disabled = false;
+    submitBtn.innerText = originalBtnText;
   }
 }
 

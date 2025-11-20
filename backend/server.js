@@ -41,6 +41,7 @@ db.connect((err) => {
 // --- API ROUTES ---
 
 // 1. Register Endpoint
+// 1. Register Endpoint (Debug Version)
 app.post("/api/register", async (req, res) => {
   const { fullName, email, password } = req.body;
   if (!fullName || !email || !password) {
@@ -53,8 +54,20 @@ app.post("/api/register", async (req, res) => {
       [fullName, email, hash],
       (err, result) => {
         if (err) {
+          // LOG THE SPECIFIC ERROR TO CONSOLE
+          console.error("REGISTRATION ERROR:", err.sqlMessage);
+
           if (err.code === "ER_DUP_ENTRY") {
-            return res.status(409).json({ error: "Email already registered." });
+            // Check if the error message mentions 'email'
+            if (err.sqlMessage.includes("email")) {
+              return res
+                .status(409)
+                .json({ error: "Email already registered." });
+            } else {
+              return res
+                .status(500)
+                .json({ error: "Database Error: Duplicate ID or Key." });
+            }
           }
           return res.status(500).json({ error: "Database error." });
         }
@@ -62,6 +75,7 @@ app.post("/api/register", async (req, res) => {
       }
     );
   } catch (e) {
+    console.error(e);
     res.status(500).json({ error: "Server error." });
   }
 });
