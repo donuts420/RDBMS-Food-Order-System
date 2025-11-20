@@ -1,12 +1,12 @@
--- -----------------------------------------------------
+
 -- 1. CREATE DATABASE
--- -----------------------------------------------------
+
 CREATE DATABASE IF NOT EXISTS food_ordering;
 USE food_ordering;
 
--- -----------------------------------------------------
+
 -- 2. USERS TABLE (Registration + Login)
--- -----------------------------------------------------
+
 CREATE TABLE IF NOT EXISTS users (
     id INT AUTO_INCREMENT PRIMARY KEY,
     full_name VARCHAR(150) NOT NULL,
@@ -15,9 +15,9 @@ CREATE TABLE IF NOT EXISTS users (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
--- -----------------------------------------------------
+
 -- 3. MENU TABLE (Your food items)
--- -----------------------------------------------------
+
 CREATE TABLE IF NOT EXISTS menu (
     id INT AUTO_INCREMENT PRIMARY KEY,
     item_name VARCHAR(200) NOT NULL,
@@ -26,9 +26,9 @@ CREATE TABLE IF NOT EXISTS menu (
     image_url VARCHAR(500)
 );
 
--- -----------------------------------------------------
+
 -- 4. ORDERS TABLE (Stores order info)
--- -----------------------------------------------------
+
 CREATE TABLE IF NOT EXISTS orders (
     id INT AUTO_INCREMENT PRIMARY KEY,
     user_id INT NOT NULL,
@@ -40,9 +40,9 @@ CREATE TABLE IF NOT EXISTS orders (
         ON DELETE CASCADE
 );
 
--- -----------------------------------------------------
+
 -- 5. ORDER ITEMS TABLE (Each food item in an order)
--- -----------------------------------------------------
+
 CREATE TABLE IF NOT EXISTS order_items (
     id INT AUTO_INCREMENT PRIMARY KEY,
     order_id INT NOT NULL,
@@ -56,9 +56,9 @@ CREATE TABLE IF NOT EXISTS order_items (
         ON DELETE CASCADE
 );
 
--- -----------------------------------------------------
+
 -- 6. INSERT SAMPLE MENU DATA (OPTIONAL)
--- -----------------------------------------------------
+
 INSERT INTO menu (item_name, description, price, image_url)
 VALUES
 ('Margherita Pizza', 'Classic cheese & tomato pizza', 299.00, 'images/pizza1.jpg'),
